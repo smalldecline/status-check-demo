@@ -36,7 +36,7 @@ const result = await check()
 
 console.log('result', result)
 
-if (result) {
+if (result === false) {
   // create fail status check to current commit
   await octokit.rest.checks.create({
     owner: 'smalldecline',
