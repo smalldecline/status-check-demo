@@ -10,6 +10,13 @@ permissions:
   contents: write
   checks: write
 
+inputs:
+  token:
+    type: string
+    description: 'The GitHub token to use for authentication'
+    required: true
+    default: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   run-check:
     # The type of runner that the job will run on

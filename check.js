@@ -1,8 +1,8 @@
-import { Octokit } from '@octokit/action'
+import core from '@actions/core'
 import github from '@actions/github'
 import 'zx/globals'
 
-const octokit = new Octokit()
+const octokit = new github.getOctokit(core.getInput('token'))
 
 const check = async () => {
   // read content.md
