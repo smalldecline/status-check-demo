@@ -1,6 +1,8 @@
 import { Octokit } from '@octokit/action'
 import 'zx/globals'
 
+$.verbose = false
+
 /**
  * repo: status-check-demo
  * owner: smalldecline
@@ -31,6 +33,8 @@ await octokit.rest.checks.create({
 
 // // run check
 const result = await check()
+
+console.log('result', result)
 
 if (result) {
   // create fail status check to current commit
