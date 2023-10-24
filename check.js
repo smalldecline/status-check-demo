@@ -9,7 +9,7 @@ import 'zx/globals'
 const octokit = new Octokit()
 
 const mainBranch = 'main'
-const currentBranch = (await $`git branch --show-current`).stdout.replace(
+const currentBranch = (await $`git rev-parse --abbrev-ref HEAD`).stdout.replace(
   '\n',
   ''
 )
