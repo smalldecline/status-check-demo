@@ -14,7 +14,7 @@ const currentBranch = (await $`git rev-parse --abbrev-ref HEAD`).stdout.replace(
   ''
 )
 
-const headSha = await $`git rev-parse HEAD`
+const headSha = (await $`git rev-parse HEAD`).stdout.replace('\n', '')
 
 const check = async () => {
   // read content.md
