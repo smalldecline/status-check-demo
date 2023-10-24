@@ -1,0 +1,17 @@
+{
+  "name": "status-check-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "check": "zx check.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "octokit": "^3.1.1",
+    "zx": "^7.2.3"
+  }
+}
