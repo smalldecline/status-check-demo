@@ -8,12 +8,6 @@ import 'zx/globals'
 
 const octokit = new Octokit()
 
-const mainBranch = 'main'
-const currentBranch = (await $`git rev-parse --abbrev-ref HEAD`).stdout.replace(
-  '\n',
-  ''
-)
-
 const headSha = (await $`git rev-parse HEAD`).stdout.replace('\n', '')
 
 const check = async () => {
@@ -61,5 +55,9 @@ if (result) {
     head_sha: headSha,
     status: 'completed',
     conclusion: 'success',
+    output: {
+      title: 'Header Check',
+      summary: 'Content start with h1',
+    },
   })
 }
