@@ -1,4 +1,4 @@
-import { Octokit } from 'octokit'
+import { Octokit } from '@octokit/action'
 import 'zx/globals'
 
 /**
@@ -6,12 +6,10 @@ import 'zx/globals'
  * owner: smalldecline
  */
 
-const octokit = new Octokit({
-  auth: `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`,
-})
+const octokit = new Octokit()
 
 const mainBranch = 'main'
-const currentBranch = (await $`git branch --show-current`).stdout.replace(
+const currentBranch = (await $`git rev-parse --abbrev-ref HEAD`).stdout.replace(
   '\n',
   ''
 )
@@ -21,7 +19,7 @@ const check = async () => {
   const content = await fs.readFile('content.md', 'utf8')
 
   // check if content start with h1
-  const startWithHeader = !content.startsWith('# ')
+  const startWithHeader = content.startsWith('# ')
 
   return startWithHeader
 }
@@ -35,7 +33,7 @@ await octokit.rest.checks.create({
   status: 'in_progress',
 })
 
-// run check
+// // run check
 const result = await check()
 
 if (result) {

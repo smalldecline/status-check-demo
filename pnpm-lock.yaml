@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@octokit/action':
+    specifier: ^6.0.6
+    version: 6.0.6
   octokit:
     specifier: ^3.1.1
     version: 3.1.1
@@ -13,6 +16,11 @@ dependencies:
     version: 7.2.3
 
 packages:
+
+  /@fastify/busboy@2.0.0:
+    resolution: {integrity: sha512-JUFJad5lv7jxj926GPgymrWQxxjPYuJNiNjNMzqT+HiuP6Vl3dk5xzG+8sTX96np0ZAluvaMzPsjhHZ5rNuNQQ==}
+    engines: {node: '>=14'}
+    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -35,6 +43,18 @@ packages:
       fastq: 1.15.0
     dev: false
 
+  /@octokit/action@6.0.6:
+    resolution: {integrity: sha512-glsTZrjXgAHpyDKQah53hQUkb79mSrGSSqLeyiri9wDs3Ds3aaR7D9H3r5kLW6RAY606to9cjwVEClbEkoGoow==}
+    engines: {node: '>= 18'}
+    dependencies:
+      '@octokit/auth-action': 4.0.1
+      '@octokit/core': 5.0.1
+      '@octokit/plugin-paginate-rest': 9.0.0(@octokit/core@5.0.1)
+      '@octokit/plugin-rest-endpoint-methods': 10.0.1(@octokit/core@5.0.1)
+      '@octokit/types': 12.0.0
+      undici: 5.26.5
+    dev: false
+
   /@octokit/app@14.0.1:
     resolution: {integrity: sha512-4opdXcWBVhzd6FOxlaxDKXXqi9Vz2hsDSWQGNo49HbYFAX11UqMpksMjEdfvHy0x19Pse8Nvn+R6inNb/V398w==}
     engines: {node: '>= 18'}
@@ -46,6 +66,14 @@ packages:
       '@octokit/plugin-paginate-rest': 9.0.0(@octokit/core@5.0.1)
       '@octokit/types': 12.0.0
       '@octokit/webhooks': 12.0.3
+    dev: false
+
+  /@octokit/auth-action@4.0.1:
+    resolution: {integrity: sha512-mJLOcFFafIivLZ7BEkGDCTFoHPJv7BeL5Zwy7j5qMDU0b/DKshhi6GCU9tw3vmKhOxTNquYfvwqsEfPpemaaxg==}
+    engines: {node: '>= 18'}
+    dependencies:
+      '@octokit/auth-token': 4.0.0
+      '@octokit/types': 12.0.0
     dev: false
 
   /@octokit/auth-app@6.0.1:
@@ -747,6 +775,13 @@ packages:
 
   /undici-types@5.25.3:
     resolution: {integrity: sha512-Ga1jfYwRn7+cP9v8auvEXN1rX3sWqlayd4HP7OKk4mZWylEmu3KzXDUGrQUN6Ol7qo1gPvB2e5gX6udnyEPgdA==}
+    dev: false
+
+  /undici@5.26.5:
+    resolution: {integrity: sha512-cSb4bPFd5qgR7qr2jYAi0hlX9n5YKK2ONKkLFkxl+v/9BvC0sOpZjBHDBSXc5lWAf5ty9oZdRXytBIHzgUcerw==}
+    engines: {node: '>=14.0'}
+    dependencies:
+      '@fastify/busboy': 2.0.0
     dev: false
 
   /universal-github-app-jwt@1.1.1:
