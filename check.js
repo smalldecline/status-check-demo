@@ -1,4 +1,4 @@
-import { Octokit } from 'octokit'
+import { Octokit } from '@octokit/action'
 import 'zx/globals'
 
 /**
@@ -6,9 +6,7 @@ import 'zx/globals'
  * owner: smalldecline
  */
 
-const octokit = new Octokit({
-  auth: `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`,
-})
+const octokit = new Octokit()
 
 const mainBranch = 'main'
 const currentBranch = (await $`git branch --show-current`).stdout.replace(
