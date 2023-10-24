@@ -21,7 +21,7 @@ const check = async () => {
   const content = await fs.readFile('content.md', 'utf8')
 
   // check if content start with h1
-  const startWithHeader = !content.startsWith('# ')
+  const startWithHeader = content.startsWith('# ')
 
   return startWithHeader
 }
@@ -35,7 +35,7 @@ await octokit.rest.checks.create({
   status: 'in_progress',
 })
 
-// run check
+// // run check
 const result = await check()
 
 if (result) {
