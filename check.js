@@ -14,6 +14,8 @@ const currentBranch = (await $`git rev-parse --abbrev-ref HEAD`).stdout.replace(
   ''
 )
 
+const headSha = await $`git rev-parse HEAD`
+
 const check = async () => {
   // read content.md
   const content = await fs.readFile('content.md', 'utf8')
@@ -29,7 +31,7 @@ await octokit.rest.checks.create({
   owner: 'smalldecline',
   repo: 'status-check-demo',
   name: 'header-check',
-  head_sha: currentBranch,
+  head_sha: headSha,
   status: 'in_progress',
 })
 
@@ -42,7 +44,7 @@ if (result) {
     owner: 'smalldecline',
     repo: 'status-check-demo',
     name: 'header-check',
-    head_sha: currentBranch,
+    head_sha: headSha,
     status: 'completed',
     conclusion: 'failure',
     output: {
@@ -56,7 +58,7 @@ if (result) {
     owner: 'smalldecline',
     repo: 'status-check-demo',
     name: 'header-check',
-    head_sha: currentBranch,
+    head_sha: headSha,
     status: 'completed',
     conclusion: 'success',
   })
