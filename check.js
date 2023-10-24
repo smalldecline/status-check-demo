@@ -2,11 +2,6 @@ import { Octokit } from '@octokit/action'
 import github from '@actions/github'
 import 'zx/globals'
 
-/**
- * repo: status-check-demo
- * owner: smalldecline
- */
-
 const octokit = new Octokit()
 
 const check = async () => {
@@ -19,19 +14,9 @@ const check = async () => {
   return startWithHeader
 }
 
-// create pending status check to current commit
-await octokit.rest.checks.create({
-  owner: github.context.repo.owner,
-  repo: github.context.repo.repo,
-  head_sha: github.context.sha,
-  name: 'header-check',
-  status: 'in_progress',
-})
-
-// // run check
 const result = await check()
 
-if (result) {
+if (result === false) {
   // create fail status check to current commit
   await octokit.rest.checks.create({
     owner: github.context.repo.owner,
