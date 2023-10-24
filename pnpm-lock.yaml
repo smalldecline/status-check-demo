@@ -5,17 +5,49 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@actions/core':
+    specifier: ^1.10.1
+    version: 1.10.1
+  '@actions/github':
+    specifier: ^6.0.0
+    version: 6.0.0
   '@octokit/action':
     specifier: ^6.0.6
     version: 6.0.6
   octokit:
     specifier: ^3.1.1
     version: 3.1.1
+  typescript:
+    specifier: ^5.2.2
+    version: 5.2.2
   zx:
     specifier: ^7.2.3
     version: 7.2.3
 
 packages:
+
+  /@actions/core@1.10.1:
+    resolution: {integrity: sha512-3lBR9EDAY+iYIpTnTIXmWcNbX3T2kCkAEQGIQx4NVQ0575nk2k3GRZDTPQG+vVtS2izSLmINlxXf0uLtnrTP+g==}
+    dependencies:
+      '@actions/http-client': 2.2.0
+      uuid: 8.3.2
+    dev: false
+
+  /@actions/github@6.0.0:
+    resolution: {integrity: sha512-alScpSVnYmjNEXboZjarjukQEzgCRmjMv6Xj47fsdnqGS73bjJNDpiiXmp8jr0UZLdUB6d9jW63IcmddUP+l0g==}
+    dependencies:
+      '@actions/http-client': 2.2.0
+      '@octokit/core': 5.0.1
+      '@octokit/plugin-paginate-rest': 9.0.0(@octokit/core@5.0.1)
+      '@octokit/plugin-rest-endpoint-methods': 10.0.1(@octokit/core@5.0.1)
+    dev: false
+
+  /@actions/http-client@2.2.0:
+    resolution: {integrity: sha512-q+epW0trjVUUHboliPb4UF9g2msf+w61b32tAkFEwL/IwP0DQWgbCMM0Hbe3e3WXSKz5VcUXbzJQgy8Hkra/Lg==}
+    dependencies:
+      tunnel: 0.0.6
+      undici: 5.26.5
+    dev: false
 
   /@fastify/busboy@2.0.0:
     resolution: {integrity: sha512-JUFJad5lv7jxj926GPgymrWQxxjPYuJNiNjNMzqT+HiuP6Vl3dk5xzG+8sTX96np0ZAluvaMzPsjhHZ5rNuNQQ==}
@@ -773,6 +805,17 @@ packages:
       is-number: 7.0.0
     dev: false
 
+  /tunnel@0.0.6:
+    resolution: {integrity: sha512-1h/Lnq9yajKY2PEbBadPXj3VxsDDu844OnaAo52UVmIzIvwwtBPIuNvkjuzBlTWpfJyUbG3ez0KSBibQkj4ojg==}
+    engines: {node: '>=0.6.11 <=0.7.0 || >=0.7.3'}
+    dev: false
+
+  /typescript@5.2.2:
+    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    dev: false
+
   /undici-types@5.25.3:
     resolution: {integrity: sha512-Ga1jfYwRn7+cP9v8auvEXN1rX3sWqlayd4HP7OKk4mZWylEmu3KzXDUGrQUN6Ol7qo1gPvB2e5gX6udnyEPgdA==}
     dev: false
@@ -798,6 +841,11 @@ packages:
   /universalify@2.0.0:
     resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
+    dev: false
+
+  /uuid@8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
     dev: false
 
   /web-streams-polyfill@3.2.1:

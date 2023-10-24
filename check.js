@@ -1,18 +1,8 @@
-import { Octokit } from '@octokit/action'
+import core from '@actions/core'
+import github from '@actions/github'
 import 'zx/globals'
 
-/**
- * repo: status-check-demo
- * owner: smalldecline
- */
-
-const octokit = new Octokit()
-
-const mainBranch = 'main'
-const currentBranch = (await $`git rev-parse --abbrev-ref HEAD`).stdout.replace(
-  '\n',
-  ''
-)
+const octokit = new github.getOctokit(core.getInput('token'))
 
 const check = async () => {
   // read content.md
@@ -24,25 +14,17 @@ const check = async () => {
   return startWithHeader
 }
 
-// create pending status check to current commit
-await octokit.rest.checks.create({
-  owner: 'smalldecline',
-  repo: 'status-check-demo',
-  name: 'header-check',
-  head_sha: currentBranch,
-  status: 'in_progress',
-})
-
-// // run check
 const result = await check()
 
-if (result) {
+console.log(result)
+
+if (result === false) {
   // create fail status check to current commit
   await octokit.rest.checks.create({
-    owner: 'smalldecline',
-    repo: 'status-check-demo',
+    owner: github.context.repo.owner,
+    repo: github.context.repo.repo,
+    head_sha: github.context.sha,
     name: 'header-check',
-    head_sha: currentBranch,
     status: 'completed',
     conclusion: 'failure',
     output: {
@@ -53,10 +35,10 @@ if (result) {
 } else {
   // create success status check to current commit
   await octokit.rest.checks.create({
-    owner: 'smalldecline',
-    repo: 'status-check-demo',
+    owner: github.context.repo.owner,
+    repo: github.context.repo.repo,
+    head_sha: github.context.sha,
     name: 'header-check',
-    head_sha: currentBranch,
     status: 'completed',
     conclusion: 'success',
   })
