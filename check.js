@@ -1,6 +1,8 @@
 import { Octokit } from '@octokit/action'
 import 'zx/globals'
 
+$.verbose = false
+
 /**
  * repo: status-check-demo
  * owner: smalldecline
@@ -8,11 +10,7 @@ import 'zx/globals'
 
 const octokit = new Octokit()
 
-const mainBranch = 'main'
-const currentBranch = (await $`git rev-parse --abbrev-ref HEAD`).stdout.replace(
-  '\n',
-  ''
-)
+const headSha = (await $`git rev-parse HEAD`).stdout.replace('\n', '')
 
 const check = async () => {
   // read content.md
@@ -29,20 +27,22 @@ await octokit.rest.checks.create({
   owner: 'smalldecline',
   repo: 'status-check-demo',
   name: 'header-check',
-  head_sha: currentBranch,
+  head_sha: headSha,
   status: 'in_progress',
 })
 
 // // run check
 const result = await check()
 
-if (result) {
+console.log('result', result)
+
+if (result === false) {
   // create fail status check to current commit
   await octokit.rest.checks.create({
     owner: 'smalldecline',
     repo: 'status-check-demo',
     name: 'header-check',
-    head_sha: currentBranch,
+    head_sha: headSha,
     status: 'completed',
     conclusion: 'failure',
     output: {
@@ -56,8 +56,12 @@ if (result) {
     owner: 'smalldecline',
     repo: 'status-check-demo',
     name: 'header-check',
-    head_sha: currentBranch,
+    head_sha: headSha,
     status: 'completed',
     conclusion: 'success',
+    output: {
+      title: 'Header Check',
+      summary: 'Content start with h1',
+    },
   })
 }
